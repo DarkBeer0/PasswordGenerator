@@ -1,12 +1,15 @@
 package org.example.Handlers;
 
 import org.example.Listeners.ButtonActionListener;
-import org.example.Listeners.InputActionListener;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class AppHandler extends JFrame {
+    public static JSlider slider = null;
+    public static JTextField input = null;
+    public static JTextField output = null;
+    public static JCheckBox checkBox = null;
 
     public void StartApp() {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -36,15 +39,13 @@ public class AppHandler extends JFrame {
     }
 
     void addInput() {
-        JTextField textField = new JTextField("pass name (optional)");
-        textField.setBounds(5, 10, 150, 25);
-        InputActionListener listener = new InputActionListener();
-        textField.addActionListener(listener);
-        this.add(textField);
+        input = new JTextField("pass name (optional)");
+        input.setBounds(5, 10, 135, 25);
+        this.add(input);
     }
 
     void addCheckBox() {
-        JCheckBox checkBox = new JCheckBox("Save to file");
+        checkBox = new JCheckBox("Save to file");
         checkBox.setBounds(2, 40, 100, 25);
         this.add(checkBox);
     }
@@ -54,7 +55,7 @@ public class AppHandler extends JFrame {
         label.setBounds(5, 60, 150, 30);
         this.add(label);
 
-        JSlider slider = new JSlider(8, 32, 16);
+        slider = new JSlider(8, 32, 16);
         slider.setBounds(0, 90, 250, 45);
         slider.setMinorTickSpacing(1);
         slider.setMajorTickSpacing(2);
@@ -66,11 +67,9 @@ public class AppHandler extends JFrame {
     }
 
     void addOutput() {
-        JTextField textField = new JTextField("your future password");
-        textField.setBounds(5, 163, 135, 25);
-        InputActionListener listener = new InputActionListener();
-        textField.addActionListener(listener);
-        textField.setEnabled(false);
-        this.add(textField);
+        output = new JTextField("your future password");
+        output.setBounds(5, 163, 135, 25);
+        output.setEnabled(false);
+        this.add(output);
     }
 }
