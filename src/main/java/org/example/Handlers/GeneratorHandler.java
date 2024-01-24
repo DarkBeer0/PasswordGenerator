@@ -6,15 +6,16 @@ import java.nio.file.Paths;
 import java.security.SecureRandom;
 
 public class GeneratorHandler {
-    public void CreatePassword(Boolean createFile, int numberOfChar, String name) {
-        String characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@$^&()-_=+";
+    private static final String chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@$^&()-_=+";
+    private static final String fileName = "PassGen.txt";
 
+    public void CreatePassword(Boolean createFile, int numberOfChar, String name) {
         SecureRandom secureRandom = new SecureRandom();
         StringBuilder password = new StringBuilder();
 
         for (int i = 0; i < numberOfChar; i++) {
-            int randomIndex = secureRandom.nextInt(characters.length());
-            char randomChar = characters.charAt(randomIndex);
+            int randomIndex = secureRandom.nextInt(chars.length());
+            char randomChar = chars.charAt(randomIndex);
             password.append(randomChar);
         }
         AppHandler.output.setText(password.toString());
@@ -26,7 +27,6 @@ public class GeneratorHandler {
 
     public boolean CheckAndCreateFile(String password, String colName) {
         Path potentialFilePass = Paths.get(System.getenv("USERPROFILE") + "\\Desktop");
-        String fileName = "PassGen.txt";
         File file = new File(potentialFilePass + "\\" + fileName);
         //File file = new File("C:\\Test" + "\\" + fileName);
         try {
